@@ -1,0 +1,20 @@
+[Unit]
+Description=STF Slack notifier
+After=docker.service
+BindsTo=docker.service
+
+[Service]
+EnvironmentFile=/etc/environment
+TimeoutStartSec=0
+Restart=always
+ExecStartPre=/usr/bin/docker pull openstf/stf:latest
+ExecStartPre=-/usr/bin/docker kill %p
+ExecStartPre=-/usr/bin/docker rm %p
+ExecStart=/usr/bin/docker run --rm \
+  --name %p \
+  -e "SLACK_TOKEN=YOUR_SLACK_TOKEN_HERE" \
+  -e "SLACK_CHANNEL=YOUR_SLACK_CHANNEL_HERE" \
+  openstf/stf:latest \
+  stf notify-slack \
+    --connect-sub tcp://localhost:7150
+ExecStop=-/usr/bin/docker stop -t 10 %p

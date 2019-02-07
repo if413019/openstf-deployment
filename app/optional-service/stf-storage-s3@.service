@@ -1,0 +1,21 @@
+[Unit]
+Description=STF s3 storage
+After=docker.service
+Requires=docker.service
+
+[Service]
+EnvironmentFile=/etc/environment
+TimeoutStartSec=0
+Restart=always
+ExecStartPre=/usr/bin/docker pull openstf/stf:latest
+ExecStartPre=-/usr/bin/docker kill %p-%i
+ExecStartPre=-/usr/bin/docker rm %p-%i
+ExecStart=/usr/bin/docker run --rm \
+  --name %p-%i \
+  -p %i:3000 \
+  openstf/stf:latest \
+  stf storage-s3 --port 3000 \
+    --bucket YOUR_S3_BUCKET_NAME_HERE \
+    --profile YOUR_AWS_CREDENTIALS_PROFILE \
+    --endpoint YOUR_BUCKET_ENDPOING_HERE
+ExecStop=-/usr/bin/docker stop -t 10 %p-%i
