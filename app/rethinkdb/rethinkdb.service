@@ -15,7 +15,6 @@ ExecStartPre=/usr/bin/chattr -R +C /srv/rethinkdb
 ExecStart=/usr/bin/docker run --rm \
   --name %p \
   -v /srv/rethinkdb:/data \
-  -e "AUTHKEY=YOUR_RETHINKDB_AUTH_KEY_HERE_IF_ANY" \
   --net host \
   rethinkdb:2.3 \
   rethinkdb --bind all \

@@ -13,7 +13,6 @@ ExecStartPre=-/usr/bin/docker rm %p-%i
 ExecStart=/usr/bin/docker run --rm \
   --name %p-%i \
   --link rethinkdb-proxy-28015:rethinkdb \
-  -e "SECRET=YOUR_SESSION_SECRET_HERE" \
   -p %i:3000 \
   openstf/stf:latest \
   stf api --port 3000 \

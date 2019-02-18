@@ -12,7 +12,7 @@ ExecStartPre=-/usr/bin/docker kill %p
 ExecStartPre=-/usr/bin/docker rm %p
 ExecStart=/usr/bin/docker run --rm \
   --name %p \
-  -p 28015 \
+  -p 28015:28015 \
   -e RETHINKDB_PORT_28015_TCP=tcp://localhost:28015 \
   openstf/ambassador:latest
 ExecStop=-/usr/bin/docker stop -t 10 %p
