@@ -18,8 +18,8 @@ ExecStart=/usr/bin/docker run --rm \
     --name "%H/%i" \
     --connect-sub tcp://localhost:7250 \
     --connect-push tcp://localhost:7270 \
-    --storage-url http://localhost:7300/ \
-    --public-ip 0.0.0.0 \
+    --storage-url http://localhost:3500/ \
+    --public-ip 192.168.38.232 \
     --min-port=15000 \
     --max-port=25000 \
     --heartbeat-interval 10000 \
