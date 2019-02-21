@@ -17,11 +17,11 @@ ExecStart=/usr/bin/docker run --rm \
   -e "OAUTH_USERINFO_URL=https://www.googleapis.com/oauth2/v3/userinfo" \
   -e "OAUTH_CLIENT_ID=187201902080-9psipoad10kttub9g101c3nabeqk31v7.apps.googleusercontent.com" \
   -e "OAUTH_CLIENT_SECRET=4dxeJC3FQy_U9wZ7E_3DFrZm" \
-  -e "OAUTH_CALLBACK_URL=http://192.168.38.232:3100/auth/oauth/callback" \
+  -e "OAUTH_CALLBACK_URL=http://192.168.38.121:3100/auth/oauth/callback" \
   -e "OAUTH_SCOPE=openid email" \
   -e "OAUTH_DOMAIN=bukalapak.com"\
   -p %i:3000 \
   openstf/stf:latest \
   stf auth-oauth2 --port 3200 \
-    --app-url http://192.168.38.232:3100/
+    --app-url http://192.168.38.121:3100/
 ExecStop=-/usr/bin/docker stop -t 10 %p-%i
