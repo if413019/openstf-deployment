@@ -16,6 +16,6 @@ ExecStart=/usr/bin/docker run --rm \
   -p %i:3100 \
   openstf/stf:latest \
   stf app --port 3100 \
-    --auth-url http://192.168.38.121:3200/auth/oauth/ \
-    --websocket-url wss://192.168.38.121:3600/
+    --auth-url http://localhost:3200/auth/oauth/ \
+    --websocket-url wss://localhost:3600/
 ExecStop=-/usr/bin/docker stop -t 10 %p-%i
